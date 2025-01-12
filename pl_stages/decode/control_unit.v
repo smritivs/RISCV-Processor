@@ -16,6 +16,7 @@ module control_unit(
 reg [13:0] controls;
 reg [3:0] alu_controls;
 
+// main decoder
 always @(*) begin
     case(op)
     // load instr
@@ -72,26 +73,16 @@ always @(*) begin
         endcase
     end
     // lui
-    7'b0110111: alu_controls = 4'bxxxx;
+    7'b0110111: alu_controls = 4'b1101;
     // branch
     7'b1100011: begin
-        case(funct3)
-            // r-type sub, add
-            3'b000: alu_controls = (funct7b5) ? 4'b0001 : 4'b0000;
-            // shift left logical
-            3'b001: alu_controls = 4'b0010;
-            // set less than
-            3'b010: alu_controls = 4'b0011;
-            // set less than unsigned
-            3'b011: alu_controls = 4'b0100;
-            // xor
-            3'b100: alu_controls = 4'b0101;
-            // shift right arithmetic, logical
-            3'b101: alu_controls = (funct7b5) ? 4'b0111 : 4'b0110;
-            // or
-            3'b110: alu_controls = 4'b1000;
-            // and
-            3'b111: alu_controls = 4'b1001;
+        casez(funct3)
+            // branch eq, neq
+            3'b00x: alu_controls = 4'b1010;
+            // branch less than , greater than
+            3'b10x: alu_controls = 4'b1011;
+            // branch less than, greater than unsigned
+            3'b11x: alu_controls = 4'b1100;
         endcase
     end
     // jalr
