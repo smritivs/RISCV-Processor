@@ -22,8 +22,8 @@
 
 module decode #(
     parameter ADDRESS_WIDTH = 32,
-    parameter DATA_WIDTH = 32)
-    (
+    parameter DATA_WIDTH = 32
+    )(
     input clk, reg_write_w,
     input [DATA_WIDTH-1:0] result_w,
     input [4:0] rd_w,

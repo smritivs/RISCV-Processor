@@ -21,8 +21,8 @@
 
 
 module mux4#(
-    parameter DATA_WIDTH=32)
-    (
+    parameter DATA_WIDTH=32
+    )(
     input [DATA_WIDTH-1:0] in1,in2,in3,in4,
     input [1:0] sel,
     output reg [DATA_WIDTH-1:0] out

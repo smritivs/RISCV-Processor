@@ -21,8 +21,8 @@
 
 
 module ff #(
-    parameter DATA_WIDTH=32)
-    (
+    parameter DATA_WIDTH=32
+    )(
     input clk,rst,
     input [DATA_WIDTH-1:0] din,
     output reg [DATA_WIDTH-1:0] dout

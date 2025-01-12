@@ -21,8 +21,8 @@
 
 
 module reg_file #(
-    parameter DATA_WIDTH = 32)
-    (
+    parameter DATA_WIDTH = 32
+    )(
     input clk, write_enable,
     input [4:0] a1, a2, a3,
     input [DATA_WIDTH-1:0] wd3,

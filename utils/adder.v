@@ -21,8 +21,8 @@
 
 
 module adder #(
-    parameter OPERAND_WIDTH = 32)
-    (
+    parameter OPERAND_WIDTH = 32
+    )(
     input [OPERAND_WIDTH-1:0] a,b,
     output [OPERAND_WIDTH-1:0] res
 );

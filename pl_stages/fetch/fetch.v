@@ -21,8 +21,8 @@
 
 module fetch #(
     parameter DATA_WIDTH=32,
-    parameter ADDRESS_WIDTH=32)
-    (
+    parameter ADDRESS_WIDTH=32
+    )(
     input clk, stall_f,
     input [1:0] pc_src_e,
     input [ADDRESS_WIDTH-1:0] pc_target_e,

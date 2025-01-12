@@ -1,6 +1,6 @@
 module alu #(
-    parameter DATA_WIDTH = 32)
-    (
+    parameter DATA_WIDTH = 32
+    )(
     input [DATA_WIDTH-1:0] a,b,
     input [3:0] alu_controls,
     input funct3b0,
