@@ -1,0 +1,419 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/bala/git_stuff/RISCV-Processor/v1/simulation/modelsim
+vadder
+Z1 !s110 1736689836
+!i10b 1
+!s100 jXE67fZjiCj2W4l?`i:H?0
+Z2 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I:fEJCUF?`7O]M8LJWHgaC3
+Z3 VDg1SIo80bB@j0V0VzS_@n1
+R0
+w1722889559
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/adder.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/adder.v
+!i122 14
+L0 4 8
+Z4 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z5 !s108 1736689836.000000
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/adder.v|
+!i113 1
+Z6 o-vlog01compat -work work
+Z7 !s92 -vlog01compat -work work +incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components
+Z8 tCvgOpt 0
+valu
+R1
+!i10b 1
+!s100 dY<I8T[L<E2cKYCX@CJS[3
+R2
+IN3egYXDhDk0M=U_4=6QJT0
+R3
+R0
+w1729424312
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu.v
+!i122 13
+L0 4 45
+R4
+r1
+!s85 0
+31
+Z9 !s108 1736689835.000000
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu.v|
+!i113 1
+R6
+R7
+R8
+valu_decoder
+Z10 !s110 1736689835
+!i10b 1
+!s100 cLO0Z_ZBN@H;a3hOaa_TE1
+R2
+IAoF:Uk]abUWfS`@5@04523
+R3
+R0
+w1729426203
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu_decoder.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu_decoder.v
+!i122 12
+L0 4 33
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/alu_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/alu_decoder.v|
+!i113 1
+R6
+R7
+R8
+vcontroller
+R10
+!i10b 1
+!s100 eT7VzLj`:V4I0h6lL:;Eh1
+R2
+I]zU^z>]C9cbeUB3AM_;LX2
+R3
+R0
+w1729095155
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/controller.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/controller.v
+!i122 11
+L0 4 28
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/controller.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/controller.v|
+!i113 1
+R6
+R7
+R8
+vdata_mem
+R10
+!i10b 1
+!s100 GU<E`PzI8dGF6zX23f;m<3
+R2
+I5mA9=@;eB[Y<LnAh^TA^31
+R3
+R0
+w1729429299
+8/home/bala/git_stuff/RISCV-Processor/v1/code/data_mem.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/data_mem.v
+!i122 2
+L0 4 115
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/data_mem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code|/home/bala/git_stuff/RISCV-Processor/v1/code/data_mem.v|
+!i113 1
+R6
+Z11 !s92 -vlog01compat -work work +incdir+/home/bala/git_stuff/RISCV-Processor/v1/code
+R8
+vdatapath
+R10
+!i10b 1
+!s100 5LQ9DIX<R1SLE^8hGb]7?1
+R2
+I`;ZFidLSIWmNdE6]P[C4Q2
+R3
+R0
+w1729095909
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/datapath.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/datapath.v
+!i122 10
+L0 3 43
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/datapath.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/datapath.v|
+!i113 1
+R6
+R7
+R8
+vimm_extend
+R10
+!i10b 1
+!s100 NaCFRR_1QCW1EDNhUoAoM1
+R2
+I3CWRj<VaXc2Tma58o6ZzH1
+R3
+R0
+w1729095075
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/imm_extend.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/imm_extend.v
+!i122 9
+L0 3 22
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/imm_extend.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/imm_extend.v|
+!i113 1
+R6
+R7
+R8
+vinstr_mem
+R1
+!i10b 1
+!s100 _2]cbk6YNQ9ECcKm2oV;A0
+R2
+IBzRoD7U:7SWUfYk4[FD:U2
+R3
+R0
+w1728640196
+8/home/bala/git_stuff/RISCV-Processor/v1/code/instr_mem.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/instr_mem.v
+!i122 15
+L0 4 18
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/instr_mem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code|/home/bala/git_stuff/RISCV-Processor/v1/code/instr_mem.v|
+!i113 1
+R6
+R11
+R8
+vmain_decoder
+R10
+!i10b 1
+!s100 CICNTL[;C0bb6=nlO<F6f1
+R2
+IIL329<LWzdknoGnWE1XIJ1
+R3
+R0
+w1729423258
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/main_decoder.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/main_decoder.v
+!i122 8
+L0 4 52
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/main_decoder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/main_decoder.v|
+!i113 1
+R6
+R7
+R8
+vmux2
+R10
+!i10b 1
+!s100 O<Ld`3jD6QL?6PIEe_QAk1
+R2
+IXPFJSGzhePl8VPa]6HQ:W1
+R3
+R0
+w1722889625
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux2.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux2.v
+!i122 7
+Z12 L0 4 9
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/mux2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux2.v|
+!i113 1
+R6
+R7
+R8
+vmux3
+R10
+!i10b 1
+!s100 fShz_RzH66YN6G@4dH?@Y3
+R2
+IRObaOL5A]S_RhhbZQm:4a0
+R3
+R0
+w1722889630
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux3.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux3.v
+!i122 6
+R12
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/mux3.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux3.v|
+!i113 1
+R6
+R7
+R8
+vmux4
+R10
+!i10b 1
+!s100 V4YdM>hK^I8CMb?cH8Cej3
+R2
+Ih]AEY4669ddh6;IgVdV0d0
+R3
+R0
+w1722889634
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux4.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux4.v
+!i122 5
+R12
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/mux4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/mux4.v|
+!i113 1
+R6
+R7
+R8
+vreg_file
+R10
+!i10b 1
+!s100 z2]InGk0[gjzdlc7_WWYI1
+R2
+IaCn?=>kAnjP1N;b^F@<ie0
+R3
+R0
+w1722889641
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/reg_file.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/reg_file.v
+!i122 4
+L0 8 27
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/reg_file.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/reg_file.v|
+!i113 1
+R6
+R7
+R8
+vreset_ff
+R10
+!i10b 1
+!s100 c1I5T0L8]]ZK0dn2hg0_F0
+R2
+IDSWSzMnWlB^7[Zch]AIN^1
+R3
+R0
+w1722889645
+8/home/bala/git_stuff/RISCV-Processor/v1/code/components/reset_ff.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/components/reset_ff.v
+!i122 3
+L0 4 12
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/components/reset_ff.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code/components|/home/bala/git_stuff/RISCV-Processor/v1/code/components/reset_ff.v|
+!i113 1
+R6
+R7
+R8
+vriscv_cpu
+R10
+!i10b 1
+!s100 n^42dCNI]A:jn4oz>BD7E0
+R2
+INNBM95YDhNV10cob=0P[Q2
+R3
+R0
+w1729095185
+8/home/bala/git_stuff/RISCV-Processor/v1/code/riscv_cpu.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/riscv_cpu.v
+!i122 1
+L0 4 24
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/riscv_cpu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code|/home/bala/git_stuff/RISCV-Processor/v1/code/riscv_cpu.v|
+!i113 1
+R6
+R11
+R8
+vt1c_riscv_cpu
+R10
+!i10b 1
+!s100 _06EPmW0mYWo69XjmhmhY3
+R2
+IKZPGTo@0cblW2QHM@=<L?1
+R3
+R0
+w1728735800
+8/home/bala/git_stuff/RISCV-Processor/v1/code/t1c_riscv_cpu.v
+F/home/bala/git_stuff/RISCV-Processor/v1/code/t1c_riscv_cpu.v
+!i122 0
+L0 4 25
+R4
+r1
+!s85 0
+31
+R9
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/code/t1c_riscv_cpu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/code|/home/bala/git_stuff/RISCV-Processor/v1/code/t1c_riscv_cpu.v|
+!i113 1
+R6
+R11
+R8
+vtb
+R1
+!i10b 1
+!s100 3lMj:0B^XkCNJJiBLB9Bo0
+R2
+I;3lPLiUzg2g6`dG]Y2Z3b3
+R3
+R0
+w1728640188
+8/home/bala/git_stuff/RISCV-Processor/v1/.test/tb.v
+F/home/bala/git_stuff/RISCV-Processor/v1/.test/tb.v
+!i122 16
+L0 3 532
+R4
+r1
+!s85 0
+31
+R5
+!s107 /home/bala/git_stuff/RISCV-Processor/v1/.test/tb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+/home/bala/git_stuff/RISCV-Processor/v1/.test|/home/bala/git_stuff/RISCV-Processor/v1/.test/tb.v|
+!i113 1
+R6
+!s92 -vlog01compat -work work +incdir+/home/bala/git_stuff/RISCV-Processor/v1/.test
+R8

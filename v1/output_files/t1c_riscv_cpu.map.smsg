@@ -1,0 +1,1 @@
+Warning (10268): Verilog HDL information at data_mem.v(23): always construct contains both blocking and non-blocking assignments File: /home/bala/intelFPGA_lite/20.1/t1c_riscv_cpu/code/data_mem.v Line: 23
