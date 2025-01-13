@@ -21,60 +21,85 @@
 
 
 module execute #(
-    parameter DATA_WIDTH = 32
+    parameter DATA_WIDTH = 32,
+    parameter ADDRESS_WIDTH = 32
     )(
-    input reg_write_e,
-    input [1:0] res_src_e,
-    input mem_write_e, jump_e, branch_e,
-    input [3:0] alu_control_e,
-    input alu_src_b_e, alu_src_a_e,
-    input [DATA_WIDTH-1:0] rd1_e, rd2_e,
-    input [ADDRESS_WIDTH-1:0] pc_e,
-    input [4:0] rs1_e, rs2_e, rd_e,
-    input [DATA_WIDTH-1:0] imm_val_e,
-    input [ADDRESS_WIDTH-1:0] pc_plus4_e
+    input reg_write_d,
+    input [1:0] res_src_d,
+    input mem_write_d, jump_d, branch_d,
+    input [3:0] alu_control_d,
+    input funct3b0,
+    input alu_src_b_d, alu_src_a_d, adder_src_d,
+    input [DATA_WIDTH-1:0] rd1_d, rd2_d,
+    input [ADDRESS_WIDTH-1:0] pc_d,
+    input [4:0] rs1_d, rs2_d, rd_d,
+    input [DATA_WIDTH-1:0] imm_val_d,
+    input [ADDRESS_WIDTH-1:0] pc_plus4_d,
+
+    output reg_write_e,
+    output [2:0] res_src_e,
+    output mem_write_e,
+
+    output [DATA_WIDTH-1:0] alu_result_e,
+    output [DATA_WIDTH-1:0] write_data_e,
+    output [3:0] rd_e,
+    output [ADDRESS_WIDTH-1:0] pc_plus4_e,
+
+    output [ADDRESS_WIDTH-1:0] pc_target_e,
 );
 
+wire [DATA_WIDTH-1:0] a_forward, b_forward, a_alu, b_alu;
+wire [ADDRESS_WIDTH-1:0] pc_adder_a;
+
 wire [DATA_WIDTH-1:0] a_mux_res, b_mux_res;
+
 mux3 a_forward_mux(
-    .in1(),
-    .in2(),
-    .in3(),
-    .sel(),
-    .out(),
+    .in1(rd1_d),
+    .in2(32'd0),
+    .in3(32'd0),
+    .sel(1'b0),
+    .out(a_forward),
 );
 mux3 b_forward_mux(
-    .in1(),
-    .in2(),
-    .in3(),
-    .sel(),
-    .out(),
+    .in1(rd2_d),
+    .in2(32'd0),
+    .in3(32'd0),
+    .sel(1'b0),
+    .out(b_forward),
 );
 
 mux2 a_src_mux(
-    .in1(),
-    .in2(),
-    .sel(),
-    .out(),
+    .in1(a_forward),
+    .in2(pc_d),
+    .sel(alu_src_a_d),
+    .out(a_alu)
 );
 
 mux2 b_src_mux(
-    .in1(),
-    .in2(),
-    .sel(),
-    .out()
+    .in1(b_forward),
+    .in2(imm_val_d),
+    .sel(alu_src_b_d),
+    .out(b_alu)
 );
 mux2 pc_target_mux(
-    .in1(),
-    .in2(),
-    .sel(),
-    .out()
+    .in1(pc_d),
+    .in2(rd1_d),
+    .sel(adder_src_d),
+    .out(pc)
 );
 
 adder pc_target_adder(
+    .a(pc_adder_a),
+    .b(imm_val_d),
+    .res(pc_target_e)
 );
 
 alu main_alu(
+    .a(a_alu),
+    .b(b_alu),
+    .alu_controls(alu_control_d),
+    .funct3b0(funct3b0),
+    .alu_res(alu_result_e)
 );
 
 endmodule

@@ -28,14 +28,15 @@ module decode #(
     input [DATA_WIDTH-1:0] result_w,
     input [4:0] rd_w,
 
-    input [ADDRESS_WIDTH-1:0] pc_d, pc_plus4_d,
-    input [DATA_WIDTH-1:0] instr_d,
+    input [ADDRESS_WIDTH-1:0] pc_f, pc_plus4_f,
+    input [DATA_WIDTH-1:0] instr_f,
 
     output reg_write_d,
     output [1:0] res_src_d,
     output mem_write_d, jump_d, branch_d,
     output [3:0] alu_control_d,
-    output alu_src_b_d, alu_src_a_d,
+    output funct3b0,
+    output alu_src_b_d, alu_src_a_d, adder_src_d,
 
     output [DATA_WIDTH-1:0] rd1_d, rd2_d,
     output [ADDRESS_WIDTH-1:0] pc_d,
@@ -44,12 +45,11 @@ module decode #(
     output [ADDRESS_WIDTH-1:0] pc_plus4_d
 );
 
-wire adder_src_d;
 wire [2:0] imm_src_d;
 
 control_unit cu(
     .op(instr_f[6:0]),
-    .funct3(instr[14:12]),
+    .funct3(instr_f[14:12]),
     .funct7b5(op[30]),
     .reg_write_d(reg_write_d),
     .res_src_d(res_src_d),
@@ -75,9 +75,11 @@ reg_file rf(
 );
 
 imm_ext imex(
-    .instr(instr[31:7]),
+    .instr(instr_f[31:7]),
     .imm_type(imm_src_d),
     .imm_val(imm_val_d)
 );
+
+assign funct3b0 = instr_d[12];
 
 endmodule
