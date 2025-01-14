@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -28,7 +28,7 @@ module ff #(
     output reg [DATA_WIDTH-1:0] dout
 );
 
-always @(posedge clk) begin
+always @(posedge clk or posedge rst) begin
     if(rst) begin
         dout <= 0;
     end

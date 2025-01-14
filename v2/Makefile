@@ -1,5 +1,5 @@
 test:
-	iverilog ./pl_stages/$(stage)/test/$(stage)_tb.v ./pl_stages/$(stage)/*
+	iverilog ./pl_stages/$(stage)/test/$(stage)_tb.v ./pl_stages/$(stage)/*.v ./utils/*.v
 	./a.out
 	gtkwave dumpfile.vcd
 

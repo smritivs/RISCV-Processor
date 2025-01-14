@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -22,11 +22,21 @@
 
 module instr_mem #(
     parameter ADDRESS_WIDTH = 32,
-    parameter DATA_WIDTH = 32
+    parameter DATA_WIDTH = 32,
+    parameter MEM_SIZE = 512
     )(
     input [ADDRESS_WIDTH-1:0] instr_addr,
-    output reg [DATA_WIDTH-1:0] instr
+    output [DATA_WIDTH-1:0] instr
     );
 
+// array of 32-bit words or instructions
+reg [DATA_WIDTH-1:0] instr_rom [0:MEM_SIZE-1];
+initial begin
+        $readmemh("code.hex", instr_rom);
+    end
+
+// word-aligned memory access
+// combinational read logic
+assign instr = instr_rom[instr_addr[31:2]];
 
 endmodule

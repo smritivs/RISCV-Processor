@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -24,21 +24,26 @@ module fetch #(
     parameter ADDRESS_WIDTH=32
     )(
     input clk, stall_f,
-    input [1:0] pc_src_e,
+    input pc_src_e,
 
     input [ADDRESS_WIDTH-1:0] pc_target_e,
-    output [ADDRESS_WIDTH-1:0] pc, pc_plus4,
+
+    output [ADDRESS_WIDTH-1:0] pc_f, pc_plus4_f,
     output [DATA_WIDTH-1:0] instr
 );
 
-wire [31:0] pcf, pc_plus4f, pc_mux_res;
+wire [31:0] pc, pc_plus4, pc_mux_res;
 
-ff pc_ff(.clk(clk),.rst(stall_f),.din(pc_mux_res),.dout(pcf));
+ff pc_ff(.clk(clk),.rst(stall_f),.din(pc_mux_res),.dout(pc));
 
 adder pc_plus4_adder(.a(pc),.b(32'd4),.res(pc_plus4));
 
-mux3 pc_mux(.in1(pc),.in2(pc_target),.in3(32'd0),.sel(pc_src_e),.out(pc_mux_res));
+mux2 pc_mux(.in1(pc_plus4),.in2(pc_target_e),.sel(pc_src_e),.out(pc_mux_res));
 
-instr_mem i_mem(.instr_addr(pcf),.instr(instr));
+instr_mem i_mem(.instr_addr(pc),.instr(instr));
+
+assign pc_plus4_f = pc_plus4;
+
+assign pc_f = pc;
 
 endmodule
