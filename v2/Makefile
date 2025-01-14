@@ -3,10 +3,11 @@ test:
 	./a.out
 	gtkwave dumpfile.vcd
 
-gpa:
+gh:
 	git add . -A
 	git commit -m "$(msg)"
-	gp
+	xclip -sel c < ~/git_stuff/key.txt
+	git push origin main
 
 clean:
 	rm -rf a.out dumpfile.vcd
