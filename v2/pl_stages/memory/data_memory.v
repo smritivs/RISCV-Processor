@@ -1,7 +1,7 @@
 module data_memory #(
     parameter ADDRESS_WIDTH = 32,
     parameter DATA_WIDTH = 32,
-    parameter MEM_SIZE = 10
+    parameter MEM_SIZE = 64
     )(
     input clk, mem_write_e,
     input [14:12] funct3,

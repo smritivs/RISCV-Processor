@@ -1,4 +1,4 @@
-module data_memory #(
+module memory #(
     parameter ADDRESS_WIDTH = 32,
     parameter DATA_WIDTH = 32
     )(
