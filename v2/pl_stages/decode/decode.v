@@ -35,7 +35,7 @@ module decode #(
     output [1:0] res_src_d,
     output mem_write_d, jump_d, branch_d,
     output [3:0] alu_control_d,
-    output funct3b0,
+    output [14:12] funct3_d,
     output alu_src_b_d, alu_src_a_d, adder_src_d,
 
     output [DATA_WIDTH-1:0] rd1_d, rd2_d,
@@ -80,7 +80,7 @@ imm_ext imex(
     .imm_val(imm_val_d)
 );
 
-assign funct3b0 = instr_d[12];
+assign funct3 = instr_d[14:12];
 
 assign pc_d = pc_f;
 assign pc_plus4_d = pc_plus4_4;

@@ -28,7 +28,7 @@ module execute #(
     input [1:0] res_src_d,
     input mem_write_d, jump_d, branch_d,
     input [3:0] alu_control_d,
-    input funct3b0,
+    input [14:12] funct3_d,
     input alu_src_b_d, alu_src_a_d, adder_src_d,
     input [DATA_WIDTH-1:0] rd1_d, rd2_d,
     input [ADDRESS_WIDTH-1:0] pc_d,
@@ -39,6 +39,7 @@ module execute #(
     output reg_write_e,
     output [2:0] res_src_e,
     output mem_write_e,
+    output [14:12] funct3_e,
 
     output [DATA_WIDTH-1:0] alu_result_e,
     output [DATA_WIDTH-1:0] write_data_e,
@@ -112,5 +113,7 @@ assign res_src_e = res_src_d;
 assign mem_write_e = mem_write_d;
 
 assign pc_plus4_e = pc_plus4_d;
+
+assign funct3_d = funct3_e;
 
 endmodule
