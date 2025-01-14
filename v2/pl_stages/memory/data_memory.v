@@ -18,6 +18,13 @@ wire [ADDRESS_WIDTH-1:0] word_addr = data_mem_addr[ADDRESS_WIDTH-1:2] % MEM_SIZE
 // read word
 wire [DATA_WIDTH-1:0] word = ram[word_addr];
 
+integer i;
+initial begin
+    for(i=0;i<MEM_SIZE;i=i+1) begin
+        ram[i] = 0;
+    end
+end
+
 // asynchronous read logic
 always @(*) begin
     case(funct3)
@@ -52,7 +59,6 @@ always @(*) begin
         end
     endcase
 end
-endmodule
 
 // synchronous write logic
 always@(posedge clk) begin
@@ -81,3 +87,5 @@ always@(posedge clk) begin
     end
 
 end
+
+endmodule

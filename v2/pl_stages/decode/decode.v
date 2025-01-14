@@ -82,4 +82,7 @@ imm_ext imex(
 
 assign funct3b0 = instr_d[12];
 
+assign pc_d = pc_f;
+assign pc_plus4_d = pc_plus4_4;
+
 endmodule

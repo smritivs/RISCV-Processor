@@ -25,6 +25,7 @@ module fetch #(
     )(
     input clk, stall_f,
     input [1:0] pc_src_e,
+
     input [ADDRESS_WIDTH-1:0] pc_target_e,
     output [ADDRESS_WIDTH-1:0] pc, pc_plus4,
     output [DATA_WIDTH-1:0] instr
