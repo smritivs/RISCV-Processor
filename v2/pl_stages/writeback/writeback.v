@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module commit #(
+module writeback #(
     parameter ADDRESS_WIDTH = 32,
     parameter DATA_WIDTH = 32
     )(
@@ -41,7 +41,7 @@ mux3 result_mux(
     .in2(read_data_m),
     .in3(pc_plus4_m),
     .sel(result_src_m),
-    .res(result_w)
+    .out(result_w)
 );
 
 endmodule
