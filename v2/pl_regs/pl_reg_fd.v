@@ -13,7 +13,15 @@ module pl_reg_fd #(
 
 always @(posedge clk) begin
 	if(clr) begin
-	pc
+		pc_f_o <= 32'd0 ;
+		pc_plus4_f_o <= 32'd0;
+		instr_f_o <= 32'd0;
+	end
+
+	else if(!en) begin
+		pc_f_o <= pc_f_i;
+		pc_plus4_f_o <= pc_plus4_f_i;
+		instr_f_o <= instr_f_i;
 	end
 
 end
