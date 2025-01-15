@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -59,15 +59,15 @@ mux3 a_forward_mux(
     .in1(rd1_d),
     .in2(32'd0),
     .in3(32'd0),
-    .sel(1'b0),
-    .out(a_forward),
+    .sel(2'b0),
+    .out(a_forward)
 );
 mux3 b_forward_mux(
     .in1(rd2_d),
     .in2(32'd0),
     .in3(32'd0),
-    .sel(1'b0),
-    .out(b_forward),
+    .sel(2'b0),
+    .out(b_forward)
 );
 
 mux2 a_src_mux(
@@ -87,7 +87,7 @@ mux2 pc_target_mux(
     .in1(pc_d),
     .in2(rd1_d),
     .sel(adder_src_d),
-    .out(pc)
+    .out(pc_adder_a)
 );
 
 adder pc_target_adder(
@@ -100,8 +100,8 @@ alu main_alu(
     .a(a_alu),
     .b(b_alu),
     .alu_controls(alu_control_d),
-    .funct3b0(funct3b0),
-    .alu_res(alu_result_e)
+    .funct3b0(funct3_d[0]),
+    .res(alu_result_e)
 );
 
 assign pc_src_e = jump_d | (branch_d & alu_result_e[0]);
@@ -114,6 +114,6 @@ assign mem_write_e = mem_write_d;
 
 assign pc_plus4_e = pc_plus4_d;
 
-assign funct3_d = funct3_e;
+assign funct3_e = funct3_d;
 
 endmodule

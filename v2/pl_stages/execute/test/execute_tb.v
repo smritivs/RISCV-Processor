@@ -25,10 +25,7 @@ module execute_tb();
     wire [ADDRESS_WIDTH-1:0] pc_target_e;
     wire pc_src_e;
 
-    execute #(
-        .DATA_WIDTH(DATA_WIDTH),
-        .ADDRESS_WIDTH(ADDRESS_WIDTH)
-    ) dut (
+    execute dut (
         .reg_write_d(reg_write_d),
         .res_src_d(res_src_d),
         .mem_write_d(mem_write_d),
@@ -68,7 +65,7 @@ module execute_tb();
     always #5 clk = ~clk;
 
     initial begin
-        $dumpfile("execute_tb.vcd");
+        $dumpfile("dumpfile.vcd");
         $dumpvars(0, execute_tb);
 
         reg_write_d = 0;
@@ -97,7 +94,6 @@ module execute_tb();
 
         #10;
         branch_d = 1;
-        alu_result_e = 32'h00000001;
         #10;
         $display("Test 2: Branch Control - pc_src_e=%b, pc_target_e=%h", pc_src_e, pc_target_e);
 
