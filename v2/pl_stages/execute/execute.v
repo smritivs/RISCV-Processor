@@ -36,6 +36,8 @@ module execute #(
     input [DATA_WIDTH-1:0] imm_val_d,
     input [ADDRESS_WIDTH-1:0] pc_plus4_d,
 
+    input [DATA_WIDTH-1:0] alu_result_m, result_w,
+
     output reg_write_e,
     output [1:0] res_src_e,
     output mem_write_e,
