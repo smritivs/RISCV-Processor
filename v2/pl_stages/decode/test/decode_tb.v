@@ -20,10 +20,7 @@ parameter DATA_WIDTH = 32;
     wire [DATA_WIDTH-1:0] imm_val_d;
     wire [ADDRESS_WIDTH-1:0] pc_plus4_d;
 
-    decode #(
-        .ADDRESS_WIDTH(ADDRESS_WIDTH),
-        .DATA_WIDTH(DATA_WIDTH)
-    ) dut (
+    decode dut (
         .clk(clk),
         .reg_write_w(reg_write_w),
         .result_w(result_w),
@@ -56,10 +53,10 @@ parameter DATA_WIDTH = 32;
         clk = 0;
     end
 
-    always #5 clk = ~clk; 
+    always #5 clk = ~clk;
 
     initial begin
-        $dumpfile("decode_tb.vcd");
+        $dumpfile("dumpfile.vcd");
         $dumpvars(0, decode_tb);
 
         reg_write_w = 0;
@@ -67,7 +64,7 @@ parameter DATA_WIDTH = 32;
         rd_w = 5'b0;
         pc_f = 32'h00000000;
         pc_plus4_f = 32'h00000004;
-        instr_f = 32'b0; 
+        instr_f = 32'h00100093;
 
         #10;
         reg_write_w = 1;
@@ -75,11 +72,11 @@ parameter DATA_WIDTH = 32;
         rd_w = 5'd2;
 
         #10;
-        $display("Test 1: Register Write - reg_write_d=%b, rd1_d=%h, rd2_d=%h", 
+        $display("Test 1: Register Write - reg_write_d=%b, rd1_d=%h, rd2_d=%h",
                  reg_write_d, rd1_d, rd2_d);
 
         #10;
-        instr_f = 32'b000000000010_00011_000_00100_0010011; 
+        instr_f = 32'b000000000010_00011_000_00100_0010011;
         #10;
         $display("Test 2: ALU Source - alu_src_a_d=%b, alu_src_b_d=%b, alu_control_d=%b",
                  alu_src_a_d, alu_src_b_d, alu_control_d);
@@ -90,12 +87,12 @@ parameter DATA_WIDTH = 32;
         $display("Test 3: Branch Control - branch_d=%b, alu_control_d=%b", branch_d, alu_control_d);
 
         #10;
-        instr_f = 32'b000000000010_00011_010_00100_0000011; 
+        instr_f = 32'b000000000010_00011_010_00100_0000011;
         #10;
         $display("Test 4: Memory Write Control - mem_write_d=%b", mem_write_d);
 
         #10;
-        instr_f = 32'b0000000_00101_00110_101_00000_1101111; 
+        instr_f = 32'b0000000_00101_00110_101_00000_1101111;
         #10;
         $display("Test 5: Jump Control - jump_d=%b, pc_d=%h", jump_d, pc_d);
 

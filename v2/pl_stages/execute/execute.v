@@ -37,7 +37,7 @@ module execute #(
     input [ADDRESS_WIDTH-1:0] pc_plus4_d,
 
     output reg_write_e,
-    output [2:0] res_src_e,
+    output [1:0] res_src_e,
     output mem_write_e,
     output [14:12] funct3_e,
 

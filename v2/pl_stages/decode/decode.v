@@ -1,4 +1,4 @@
-`timescale 1ns / 1ps
+
 //////////////////////////////////////////////////////////////////////////////////
 // Company:
 // Engineer:
@@ -35,7 +35,7 @@ module decode #(
     output [1:0] res_src_d,
     output mem_write_d, jump_d, branch_d,
     output [3:0] alu_control_d,
-    output [14:12] funct3_d,
+    output [2:0] funct3_d,
     output alu_src_b_d, alu_src_a_d, adder_src_d,
 
     output [DATA_WIDTH-1:0] rd1_d, rd2_d,
@@ -50,7 +50,7 @@ wire [2:0] imm_src_d;
 control_unit cu(
     .op(instr_f[6:0]),
     .funct3(instr_f[14:12]),
-    .funct7b5(op[30]),
+    .funct7b5(instr_f[30]),
     .reg_write_d(reg_write_d),
     .res_src_d(res_src_d),
     .mem_write_d(mem_write_d),
@@ -66,8 +66,8 @@ control_unit cu(
 reg_file rf(
     .clk(clk),
     .write_enable(reg_write_w),
-    .a1(instr_d[19:15]),
-    .a2(instr_d[24:20]),
+    .a1(instr_f[19:15]),
+    .a2(instr_f[24:20]),
     .a3(rd_w),
     .wd3(result_w),
     .rd1(rd1_d),
@@ -80,9 +80,9 @@ imm_ext imex(
     .imm_val(imm_val_d)
 );
 
-assign funct3 = instr_d[14:12];
+assign funct3_d = instr_f[14:12];
 
 assign pc_d = pc_f;
-assign pc_plus4_d = pc_plus4_4;
+assign pc_plus4_d = pc_plus4_f;
 
 endmodule
