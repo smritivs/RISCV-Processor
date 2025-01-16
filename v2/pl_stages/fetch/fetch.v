@@ -23,7 +23,7 @@ module fetch #(
     parameter DATA_WIDTH=32,
     parameter ADDRESS_WIDTH=32,
     )(
-    input clk, stall_f,
+    input clk, rst, en,
     input pc_src_e,
 
     input [ADDRESS_WIDTH-1:0] pc_target_e,
@@ -34,7 +34,7 @@ module fetch #(
 
 wire [31:0] pc, pc_plus4, pc_mux_res;
 
-ff pc_ff(.clk(clk),.rst(stall_f),.din(pc_mux_res),.dout(pc));
+reset_ff pc_ff(.clk(clk),.rst(rst),.en(stall_f),.din(pc_mux_res),.dout(pc));
 
 adder pc_plus4_adder(.a(pc),.b(32'd4),.res(pc_plus4));
 
