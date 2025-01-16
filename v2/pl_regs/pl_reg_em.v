@@ -33,7 +33,9 @@ module pl_reg_em #(
             write_data_m <= 32'd0;
             rd_m <= 5'd0;
             pc_plus4_m <= 32'd0;
-        end else if (en) begin
+        end
+
+        else if (!en) begin
             reg_write_m <= reg_write_e;
             mem_write_m <= mem_write_e;
             result_src_m <= result_src_e;

@@ -26,7 +26,9 @@ module pl_reg_mw #(
             read_data_w <= 32'd0;
             rd_w <= 5'd0;
             pc_plus4_w <= 32'd0;
-        end else if (en) begin
+        end
+
+        else if (!en) begin
             reg_write_w <= reg_write_m;
             result_src_w <= result_src_m;
             alu_result_w <= alu_result_m;
