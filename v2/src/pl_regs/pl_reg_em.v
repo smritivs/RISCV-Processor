@@ -1,50 +1,49 @@
 module pl_reg_em #(
     parameter ADDRESS_WIDTH = 32,
     parameter DATA_WIDTH = 32
-)(
-    input clk, en, clr,
-    input reg_write_e,
-    input mem_write_e,
-    input [1:0] result_src_e,
-    input [3:0] alu_control_e,
-    input [14:12] funct3_e,
-    input [DATA_WIDTH-1:0] alu_result_e, write_data_e,
-    input [4:0] rd_e,
-    input [ADDRESS_WIDTH-1:0] pc_plus4_e,
+) (
+    input clk,
+    en,
+    clr,
 
-    output reg reg_write_m,
-    output reg mem_write_m,
-    output reg [1:0] result_src_m,
-    output reg [3:0] alu_control_m,
-    output reg [14:12] funct3_m,
-    output reg [DATA_WIDTH-1:0] alu_result_m, write_data_m,
-    output reg [4:0] rd_m,
-    output reg [ADDRESS_WIDTH-1:0] pc_plus4_m
+    input reg_write_e_i,
+    input mem_write_e_i,
+    input [1:0] result_src_e_i,
+    input [14:12] funct3_e_i,
+    input [DATA_WIDTH-1:0] alu_result_e_i,
+    write_data_e_i,
+    input [4:0] rd_e_i,
+    input [ADDRESS_WIDTH-1:0] pc_plus4_e_i,
+
+    output reg reg_write_e_o,
+    output reg mem_write_e_o,
+    output reg [1:0] result_src_e_o,
+    output reg [14:12] funct3_e_o,
+    output reg [DATA_WIDTH-1:0] alu_result_e_o,
+    write_data_e_o,
+    output reg [4:0] rd_e_o,
+    output reg [ADDRESS_WIDTH-1:0] pc_plus4_e_o
 );
 
     always @(posedge clk) begin
         if (clr) begin
-            reg_write_m <= 1'b0;
-            mem_write_m <= 1'b0;
-            result_src_m <= 2'b00;
-            alu_control_m <= 4'b0;
-            funct3_m <= 3'b0;
-            alu_result_m <= 32'd0;
-            write_data_m <= 32'd0;
-            rd_m <= 5'd0;
-            pc_plus4_m <= 32'd0;
-        end
-
-        else if (!en) begin
-            reg_write_m <= reg_write_e;
-            mem_write_m <= mem_write_e;
-            result_src_m <= result_src_e;
-            alu_control_m <= alu_control_e;
-            funct3_m <= funct3_e;
-            alu_result_m <= alu_result_e;
-            write_data_m <= write_data_e;
-            rd_m <= rd_e;
-            pc_plus4_m <= pc_plus4_e;
+            reg_write_e_o <= 1'b0;
+            mem_write_e_o <= 1'b0;
+            result_src_e_o <= 2'b00;
+            funct3_e_o <= 3'b0;
+            alu_result_e_o <= 32'd0;
+            write_data_e_o <= 32'd0;
+            rd_e_o <= 5'd0;
+            pc_plus4_e_o <= 32'd0;
+        end else if (!en) begin
+            reg_write_e_o <= reg_write_e_i;
+            mem_write_e_o <= mem_write_e_i;
+            result_src_e_o <= result_src_e_i;
+            funct3_e_o <= funct3_e_i;
+            alu_result_e_o <= alu_result_e_i;
+            write_data_e_o <= write_data_e_i;
+            rd_e_o <= rd_e_i;
+            pc_plus4_e_o <= pc_plus4_e_i;
         end
     end
 endmodule
