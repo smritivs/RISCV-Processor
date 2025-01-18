@@ -31,18 +31,41 @@ wire [1:0] res_src_d_o;
 wire mem_write_d_o, reg_write_d_o, jump_d_o, branch_d_o, alu_src_a_d_o, alu_src_b_d_o, adder_src_d_o;
 
 // e to m
-wire [DATA_WIDTH-1:0] alu_result_e, write_data_e;
-wire [ADDRESS_WIDTH-1:0] pc_target_e, pc_plus4_e;
-wire pc_src_e, mem_write_e, reg_write_e;
-wire [1:0] res_src_e;
+wire [DATA_WIDTH-1:0] alu_result_e_i, write_data_e_i;
+wire [ADDRESS_WIDTH-1:0] pc_target_e_i, pc_plus4_e_i;
+wire pc_src_e_i, mem_write_e_i, reg_write_e_i;
+wire [1:0] res_src_e_i;
+
+wire [DATA_WIDTH-1:0] alu_result_e_o, write_data_e_o;
+wire [ADDRESS_WIDTH-1:0] pc_target_e_o, pc_plus4_e_o;
+wire pc_src_e_o, mem_write_e_o, reg_write_e_o;
+wire [1:0] res_src_e_o;
 
 // m to w
+wire reg_write_m_i;
+wire [1:0] result_src_m_i;
+wire [DATA_WIDTH-1:0] alu_result_m_i;
+wire [DATA_WIDTH-1:0] read_data_m_i;
+wire [4:0] rd_m_i;
+wire [ADDRESS_WIDTH-1:0] pc_plus4_m_i;
+
+wire reg_write_m_o;
+wire [1:0] result_src_m_o;
+wire [DATA_WIDTH-1:0] alu_result_m_o;
+wire [DATA_WIDTH-1:0] read_data_m_o;
+wire [4:0] rd_m_o;
+wire [ADDRESS_WIDTH-1:0] pc_plus4_m_o;
 
 // w to f
-wire [DATA_WIDTH-1:0] mem_data_w, alu_result_w;
-wire [ADDRESS_WIDTH-1:0] pc_plus4_w;
-wire [1:0] res_src_w;
-wire reg_write_w;
+wire [DATA_WIDTH-1:0] mem_data_w_i, alu_result_w_i;
+wire [ADDRESS_WIDTH-1:0] pc_plus4_w_i;
+wire [1:0] res_src_w_i;
+wire reg_write_w_i;
+
+wire [DATA_WIDTH-1:0] mem_data_w_o, alu_result_w_o;
+wire [ADDRESS_WIDTH-1:0] pc_plus4_w_o;
+wire [1:0] res_src_w_o;
+wire reg_write_w_o;
 
 // hazards
 wire stall_f, stall_d, flush_d, flush_e, forward_a_e, forward_b_e;
@@ -65,9 +88,8 @@ pl_reg_fd fd(
 	.clk(clk),
 	.en(stall_f),
 	.clr(rst),
-    .pc_f_i(pc_f)
-
-)
+    .pc_f_i(pc_f_i)
+);
 
 // Decode
 decode decode_stage (
