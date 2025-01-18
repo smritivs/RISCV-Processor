@@ -23,7 +23,7 @@ module cpu_tb ();
 
     initial begin
         $dumpfile("dumpfile.vcd");
-        $dumpvars(0, decode_tb);
+        $dumpvars(0, cpu_tb);
 
         rst = 1;
         #5 rst = 0;
