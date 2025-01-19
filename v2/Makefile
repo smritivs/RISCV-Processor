@@ -1,12 +1,16 @@
-SOURCE_DIRS=./src/fetch/fetch.v ./src/decode/decode.v ./src/execute/execute.v ./src/decode/decode.v ./src/decode/decode.v
-
+# SOURCES=./src/pl_stages/fetch/fetch.v ./src/pl_stages/decode/decode.v ./src/pl_stages/execute/execute.v ./src/pl_stages/memory/memory.v ./src/pl_stages/writeback/writeback.v ./src/utils ./src/pl_regs/
+SRC_STG=-Y .v -y ./src/pl_stages/fetch -Y .v -y ./src/pl_stages/decode -Y .v -y ./src/pl_stages/execute -Y .v -y ./src/pl_stages/memory -Y .v -y ./src/pl_stages/writeback
+SRC_REGS=-Y .v -y ./src/pl_regs
+SRC_UTILS=-Y .v -y ./src/utils
+SRC_TOP=-Y .v -y ./src/top
+SRC_ALL=$(SRC_STG) $(SRC_REGS) $(SRC_UTILS) $(SRC_TOP)
 sims:
-	iverilog ./test/pl_stages/$(stage)/$(stage)_tb.v ./src/pl_stages/$(stage)/*.v ./src/utils/*.v
+	iverilog $(SRC_ALL) ./test/pl_stages/$(target)/$(target)_tb.v
 	./a.out
 	gtkwave dumpfile.vcd
 
 simt:
-	iverilog ./test/top/cpu_tb.v ./src/top/cpu.v ./src/pl_stages/*/*.v ./src/pl_regs/* ./src/utils/*.v
+	iverilog $(SRC_ALL) ./test/top/cpu_tb.v
 	./a.out
 	gtkwave dumpfile.vcd
 lint:
