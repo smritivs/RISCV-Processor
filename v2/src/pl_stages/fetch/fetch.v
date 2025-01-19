@@ -23,15 +23,12 @@ module fetch #(
     parameter DATA_WIDTH = 32,
     parameter ADDRESS_WIDTH = 32
 ) (
-    input clk,
-    rst,
-    en,
-    input pc_src_e,
+    input clk, rst, en,
 
+    input pc_src_e,
     input [ADDRESS_WIDTH-1:0] pc_target_e,
 
-    output [ADDRESS_WIDTH-1:0] pc_f,
-    pc_plus4_f,
+    output [ADDRESS_WIDTH-1:0] pc_f, pc_plus4_f,
     output [DATA_WIDTH-1:0] instr_f
 );
 

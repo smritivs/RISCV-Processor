@@ -82,7 +82,7 @@ module cpu #(
         .clk(clk),
         .en(stall_f),
         .rst(reset),
-        .pc_src_e(pc_src_e),
+        .pc_src_e(pc_src_e_i),
         .pc_target_e(pc_target_e_i),
         .pc_f(pc_f_i),
         .pc_plus4_f(pc_plus4_f_i),
