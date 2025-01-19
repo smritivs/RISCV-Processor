@@ -37,7 +37,7 @@ module fetch #(
     reset_ff pc_ff (
         .clk (clk),
         .rst (rst),
-        .en  (stall_f),
+        .en  (en),
         .din (pc_mux_res),
         .dout(pc)
     );

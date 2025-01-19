@@ -1,4 +1,4 @@
-module hazard_unit #(
+module hazard #(
 	parameter ADDRESS_WIDTH = 32,
 	parameter DATA_WIDTH = 32
 	)(

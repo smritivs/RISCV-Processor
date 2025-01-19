@@ -36,7 +36,8 @@ module execute #(
     input [DATA_WIDTH-1:0] imm_val_d,
     input [ADDRESS_WIDTH-1:0] pc_plus4_d,
 
-    input [DATA_WIDTH-1:0] alu_result_m, result_w,
+    input [DATA_WIDTH-1:0] alu_result_m,alu_result_w,
+    input [1:0] forward_a_e, forward_b_e,
 
     output reg_write_e,
     output [1:0] res_src_e,
@@ -45,7 +46,7 @@ module execute #(
 
     output [DATA_WIDTH-1:0] alu_result_e,
     output [DATA_WIDTH-1:0] write_data_e,
-    output [3:0] rd_e,
+    output [4:0] rd_e,
     output [ADDRESS_WIDTH-1:0] pc_plus4_e,
 
     output [ADDRESS_WIDTH-1:0] pc_target_e,
@@ -59,16 +60,16 @@ wire [DATA_WIDTH-1:0] a_mux_res, b_mux_res;
 
 mux3 a_forward_mux(
     .in1(rd1_d),
-    .in2(32'd0),
-    .in3(32'd0),
-    .sel(2'b0),
+    .in2(alu_result_m),
+    .in3(alu_result_w),
+    .sel(forward_a_e),
     .out(a_forward)
 );
 mux3 b_forward_mux(
     .in1(rd2_d),
-    .in2(32'd0),
-    .in3(32'd0),
-    .sel(2'b0),
+    .in2(alu_result_m),
+    .in3(alu_result_w),
+    .sel(forward_b_e),
     .out(b_forward)
 );
 

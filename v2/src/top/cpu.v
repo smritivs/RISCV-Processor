@@ -38,7 +38,7 @@ module cpu #(
     wire pc_src_e_i, mem_write_e_i, reg_write_e_i;
     wire [1:0] res_src_e_i;
     wire [2:0] funct3_e_i;
-    wire [4:0] rd_e_i;
+    wire [4:0] rs1_e_i, rs2_e_i, rd_e_i;
 
     wire [DATA_WIDTH-1:0] alu_result_e_o, write_data_e_o;
     wire [ADDRESS_WIDTH-1:0] pc_target_e_o, pc_plus4_e_o;
@@ -75,13 +75,35 @@ module cpu #(
     wire reg_write_w_o;
 
     // hazards
-    wire stall_f, stall_d, flush_d, flush_e, forward_a_e, forward_b_e;
+    wire stall_f, stall_d, flush_d, flush_e;
+    wire [1:0] forward_a_e, forward_b_e;
+
+    hazard hazard_unit(
+        .rs1_d(rs1_d_i),
+        .rs2_d(rs2_d_i),
+    	.rs1_e(rs1_e_i),
+    	.rs2_e(rs2_e_i),
+    	.rd_e(rd_e_i),
+    	.pc_src_e(pc_src_e_i),
+    	.res_src_e_b0(res_src_e_i[0]),
+    	.rd_m(rd_m_i),
+    	.reg_write_m(reg_write_m_i),
+    	.rd_w(rd_w_i),
+    	.reg_write_w(reg_write_w_i),
+
+    	.stall_f(stall_f),
+    	.stall_d(stall_d),
+    	.flush_d(flush_d),
+    	.flush_e(flush_e),
+    	.forward_a_e(forward_a_e),
+    	.forward_b_e(forward_b_e)
+    );
 
     // Fetch
     fetch fetch_stage (
         .clk(clk),
         .en(stall_f),
-        .rst(reset),
+        .rst(rst),
         .pc_src_e(pc_src_e_i),
         .pc_target_e(pc_target_e_i),
         .pc_f(pc_f_i),
@@ -115,12 +137,15 @@ module cpu #(
         .pc_plus4_f(pc_plus4_f_o),
 
         .alu_control_d(alu_control_d_i),
+        .funct3_d(funct3_d_i),
         .rd1_d(rd1_d_i),
         .rd2_d(rd2_d_i),
         .imm_val_d(imm_val_d_i),
+        .pc_plus4_d(pc_plus4_d_i),
         .rs1_d(rs1_d_i),
         .rs2_d(rs2_d_i),
         .rd_d(rd_d_i),
+        .pc_d(pc_d_i),
         .res_src_d(res_src_d_i),
         .mem_write_d(mem_write_d_i),
         .reg_write_d(reg_write_d_i),
@@ -183,7 +208,7 @@ module cpu #(
         .jump_d(jump_d_i),
         .branch_d(branch_d_i),
         .alu_control_d(alu_control_d_i),
-        .funct3_d(funct3_d_i),
+        .funct3_d(funct3_d_o),
         .alu_src_b_d(alu_src_b_d_i),
         .alu_src_a_d(alu_src_a_d_i),
         .adder_src_d(adder_src_d_i),
@@ -196,6 +221,11 @@ module cpu #(
         .imm_val_d(imm_val_d_i),
         .pc_plus4_d(pc_plus4_d_i),
 
+        .alu_result_m(alu_result_m_i),
+        .alu_result_w(alu_result_w_i),
+        .forward_a_e(),
+        .forward_b_e(),
+
         .reg_write_e(reg_write_e_i),
         .res_src_e(res_src_e_i),
         .mem_write_e(mem_write_e_i),
@@ -203,7 +233,9 @@ module cpu #(
         .write_data_e(write_data_e_i),
         .pc_plus4_e(pc_plus4_e_i),
         .pc_target_e(pc_target_e_i),
-        .pc_src_e(pc_src_e_i)
+        .pc_src_e(pc_src_e_i),
+        .funct3_e(funct3_e_i),
+        .rd_e(rd_e_i)
     );
 
     // e to m pl_reg
