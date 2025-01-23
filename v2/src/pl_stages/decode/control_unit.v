@@ -41,7 +41,7 @@ always @(*) begin
     // jal
     7'b1101111: controls = 12'b1_10_0_1_0_0_0_0_011;
     // default
-    default: controls = 12'bx_xx_x_x_x_x_x_x_xxx;
+    default: controls = 12'bx_00_0_0_0_0_0_0_000;
     endcase
 end
 
