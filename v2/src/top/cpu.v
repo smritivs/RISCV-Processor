@@ -79,17 +79,17 @@ module cpu #(
     wire [1:0] forward_a_e, forward_b_e;
 
     hazard hazard_unit(
-        .rs1_d(rs1_d_i),
-        .rs2_d(rs2_d_i),
-    	.rs1_e(rs1_e_i),
-    	.rs2_e(rs2_e_i),
-    	.rd_e(rd_e_i),
+        .rs1_d(instr_f_o[19:15]),
+        .rs2_d(instr_f_o[24:20]),
+    	.rs1_e(rs1_d_o),
+    	.rs2_e(rs2_d_o),
+    	.rd_e(rd_d_o),
     	.pc_src_e(pc_src_e_i),
-    	.res_src_e_b0(res_src_e_i[0]),
-    	.rd_m(rd_m_i),
-    	.reg_write_m(reg_write_m_i),
-    	.rd_w(rd_w_i),
-    	.reg_write_w(reg_write_w_i),
+    	.res_src_e_b0(res_src_d_o[0]),
+    	.rd_m(rd_e_o),
+    	.reg_write_m(reg_write_e_o),
+    	.rd_w(rd_m_o),
+    	.reg_write_w(reg_write_m_o),
 
     	.stall_f(stall_f),
     	.stall_d(stall_d),
@@ -160,7 +160,7 @@ module cpu #(
     pl_reg_de de (
         .clk(clk),
         .en (1'b0),
-        .clr(flush_e),
+        .clr(flush_e | rst),
 
         .reg_write_d_i(reg_write_d_i),
         .res_src_d_i(res_src_d_i),
@@ -202,29 +202,29 @@ module cpu #(
     );
     // Execute
     execute execute_stage (
-        .reg_write_d(reg_write_d_i),
-        .res_src_d(res_src_d_i),
-        .mem_write_d(mem_write_d_i),
-        .jump_d(jump_d_i),
-        .branch_d(branch_d_i),
-        .alu_control_d(alu_control_d_i),
+        .reg_write_d(reg_write_d_o),
+        .res_src_d(res_src_d_o),
+        .mem_write_d(mem_write_d_o),
+        .jump_d(jump_d_o),
+        .branch_d(branch_d_o),
+        .alu_control_d(alu_control_d_o),
         .funct3_d(funct3_d_o),
-        .alu_src_b_d(alu_src_b_d_i),
-        .alu_src_a_d(alu_src_a_d_i),
-        .adder_src_d(adder_src_d_i),
-        .rd1_d(rd1_d_i),
-        .rd2_d(rd2_d_i),
-        .pc_d(pc_d_i),
-        .rs1_d(rs1_d_i),
-        .rs2_d(rs2_d_i),
-        .rd_d(rd_d_i),
-        .imm_val_d(imm_val_d_i),
-        .pc_plus4_d(pc_plus4_d_i),
+        .alu_src_b_d(alu_src_b_d_o),
+        .alu_src_a_d(alu_src_a_d_o),
+        .adder_src_d(adder_src_d_o),
+        .rd1_d(rd1_d_o),
+        .rd2_d(rd2_d_o),
+        .pc_d(pc_d_o),
+        .rs1_d(rs1_d_o),
+        .rs2_d(rs2_d_o),
+        .rd_d(rd_d_o),
+        .imm_val_d(imm_val_d_o),
+        .pc_plus4_d(pc_plus4_d_o),
 
         .alu_result_m(alu_result_m_i),
         .alu_result_w(alu_result_w_i),
-        .forward_a_e(),
-        .forward_b_e(),
+        .forward_a_e(forward_a_e),
+        .forward_b_e(forward_b_e),
 
         .reg_write_e(reg_write_e_i),
         .res_src_e(res_src_e_i),
@@ -242,7 +242,7 @@ module cpu #(
     pl_reg_em em (
         .clk(clk),
         .en (1'b0),
-        .clr(1'b0),
+        .clr(rst),
 
         .reg_write_e_i(reg_write_e_i),
         .mem_write_e_i(mem_write_e_i),
@@ -286,7 +286,7 @@ module cpu #(
     pl_reg_mw mw (
         .clk(clk),
         .en (1'b0),
-        .clr(1'b0),
+        .clr(rst),
 
         .reg_write_m_i(reg_write_m_i),
         .result_src_m_i(result_src_m_i),

@@ -2,6 +2,7 @@ module hazard #(
 	parameter ADDRESS_WIDTH = 32,
 	parameter DATA_WIDTH = 32
 	)(
+	input rst,
 	input [4:0] rs1_d, rs2_d,
 
 	input [4:0] rs1_e, rs2_e, rd_e,
