@@ -1,4 +1,4 @@
-
+`timescale 1ns/1ps
 
 module cpu_tb ();
     parameter ADDRESS_WIDTH = 32;
@@ -7,12 +7,14 @@ module cpu_tb ();
     reg rst, clk;
 
     wire [DATA_WIDTH-1:0] result;
+    wire [ADDRESS_WIDTH-1:0] pcw;
 
     cpu dut (
         .clk(clk),
         .rst(rst),
 
-        .result(result)
+        .result(result),
+        .pcw(pcw)
     );
 
     initial begin
@@ -28,7 +30,7 @@ module cpu_tb ();
         rst = 1;
         #5 rst = 0;
 
-        #100 $finish();
+        #1000 $finish();
 
     end
 endmodule

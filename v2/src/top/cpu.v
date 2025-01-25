@@ -5,7 +5,8 @@ module cpu #(
     input clk,
     input rst,
 
-    output [DATA_WIDTH-1:0] result
+    output [DATA_WIDTH-1:0] result,
+    output [ADDRESS_WIDTH-1:0] pcw
 );
 
     // f to d
@@ -318,5 +319,7 @@ module cpu #(
     );
 
     assign result = alu_result_w_i;
+
+    assign pcw = pc_plus4_m_o - 4;
 
 endmodule
