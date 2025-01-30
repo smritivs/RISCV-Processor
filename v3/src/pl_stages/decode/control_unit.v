@@ -100,11 +100,11 @@ always @(*) begin
     7'b1110111: begin
         casez({funct7[31:28],funct3})
         // add/sub16
-        7'b010000?: alu_controls = 6'b010000 | funct3[0];
+        7'b010000?: alu_controls = 6'b010000 | funct3[12];
         // stas/stsa16
-        7'b111101?: alu_controls = 6'b010010 | funct3[0];
+        7'b111101?: alu_controls = 6'b010010 | funct3[12];
         // add/sub8
-        7'b010010?: alu_controls = 6'b010100 | funct3[0];
+        7'b010010?: alu_controls = 6'b010100 | funct3[12];
         // sra/srai16
         7'b01?1000: alu_controls = 6'b010110;
         // srl/srli16

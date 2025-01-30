@@ -100,7 +100,7 @@ module decode #(
     );
 
     assign is8 = (instr_f[31:25] == 7'b1110111) ? (instr_f[14]) : (0);
-    assign is16 = (instr_f[31:25] == 7'b1110111) ? (~instr_f[14]) : (1);
+    assign is16 = (instr_f[31:25] == 7'b1110111) ? (~instr_f[14]) : (0);
     assign imm_val_p = (is16) ? (instr_f[24:20]) : ((is8) ? (instr_f[23:20]) : (0));
 
     assign funct3_d = instr_f[14:12];
