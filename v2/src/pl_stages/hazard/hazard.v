@@ -30,9 +30,9 @@ assign lw_stall = res_src_e_b0 & ((rs1_d == rd_e) | (rs2_d == rd_e));
 assign stall_f = lw_stall;
 assign stall_d = lw_stall;
 
-assign forward_a_e = (((rs1_e == rd_m) & reg_write_m) & (rs1_e != 0)) ? 2'b10 : ( (((rs1_e == rd_w) & reg_write_w) & (rs1_e != 0)) ? 2'b01 : 2'b00);
+assign forward_a_e = (((rs1_e == rd_m) & reg_write_m) & (rs1_e != 0)) ? 2'b01 : ( (((rs1_e == rd_w) & reg_write_w) & (rs1_e != 0)) ? 2'b10 : 2'b00);
 
-assign forward_b_e = (((rs2_e == rd_m) & reg_write_m) & (rs2_e != 0)) ? 2'b10 : ( (((rs2_e == rd_w) & reg_write_w) & (rs2_e != 0)) ? 2'b01 : 2'b00);
+assign forward_b_e = (((rs2_e == rd_m) & reg_write_m) & (rs2_e != 0)) ? 2'b01 : ( (((rs2_e == rd_w) & reg_write_w) & (rs2_e != 0)) ? 2'b10 : 2'b00);
 
 assign flush_d = pc_src_e;
 assign flush_e = lw_stall | pc_src_e;

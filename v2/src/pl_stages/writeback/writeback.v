@@ -44,4 +44,7 @@ module writeback #(
         .out(result_w)
     );
 
+assign rd_w = rd_m;
+assign reg_write_w = reg_write_m;
+
 endmodule

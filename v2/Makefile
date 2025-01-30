@@ -12,15 +12,19 @@ SRC_TOP_V=-y ./src/top
 SRC_ALL=$(SRC_STG) $(SRC_REGS) $(SRC_UTILS) $(SRC_TOP)
 
 SRC_ALL_V=$(SRC_STG_V) $(SRC_REGS_V) $(SRC_UTILS_V) $(SRC_TOP_V)
-sims:
+sim:
+ifeq ($(top),cpu)
+	iverilog -Wall $(SRC_ALL) ./test/top/cpu_tb.v
+	./a.out
+	gtkwave dumpfile.vcd
+
+else
 	iverilog $(SRC_ALL) ./test/pl_stages/$(target)/$(target)_tb.v
 	./a.out
 	gtkwave dumpfile.vcd
 
-simt:
-	iverilog -Wall $(SRC_ALL) ./test/top/cpu_tb.v
-	./a.out
-	gtkwave dumpfile.vcd
+endif
+
 lint:
 ifeq ($(top),cpu)
 	verilator --lint-only ./test/top/cpu_tb.v  $(SRC_ALL_V)

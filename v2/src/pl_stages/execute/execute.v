@@ -111,12 +111,13 @@ assign pc_src_e = jump_d | (branch_d & alu_result_e[0]);
 
 assign reg_write_e = reg_write_d;
 
-assign reg_write_e = reg_write_d;
 assign res_src_e = res_src_d;
 assign mem_write_e = mem_write_d;
 
 assign pc_plus4_e = pc_plus4_d;
 
 assign funct3_e = funct3_d;
+
+assign rd_e = rd_d;
 
 endmodule

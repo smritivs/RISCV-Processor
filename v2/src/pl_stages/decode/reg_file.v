@@ -44,7 +44,7 @@ always @(posedge clk) begin
 end
 
 // combinational read logic
-assign rd1 = (rd1 == 0) ? 0 : reg_array[a1];
-assign rd2 = (rd2 == 0) ? 0 : reg_array[a2];
+assign rd1 = (a1 == 0) ? 0 : reg_array[a1];
+assign rd2 = (a2 == 0) ? 0 : reg_array[a2];
 
 endmodule

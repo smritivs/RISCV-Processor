@@ -94,4 +94,8 @@ module decode #(
     assign pc_d = pc_f;
     assign pc_plus4_d = pc_plus4_f;
 
+    assign rs1_d = instr_f[19:15];
+    assign rs2_d = instr_f[24:20];
+    assign rd_d = instr_f[11:7];
+
 endmodule
