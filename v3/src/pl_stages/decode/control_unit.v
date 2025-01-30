@@ -42,6 +42,8 @@ always @(*) begin
     7'b1100111: controls = 12'b1_10_0_1_0_0_0_1_000;
     // jal
     7'b1101111: controls = 12'b1_10_0_1_0_0_0_0_011;
+    // p type, encode imm vals
+    7'b1110111: controls = 12'b1_00_0_0_0_0_1_0_000;
     // default
     default: controls = 12'bx_00_0_0_0_0_0_0_000;
     endcase
@@ -104,17 +106,17 @@ always @(*) begin
         // add/sub8
         7'b010010?: alu_controls = 6'b010100 | funct3[0];
         // sra/srai16
-        7'b01?1000: alu_controls = 6'b010110 | funct7[29];
+        7'b01?1000: alu_controls = 6'b010110;
         // srl/srli16
-        7'b01?1001: alu_controls = 6'b011000 | funct7[29];
+        7'b01?1001: alu_controls = 6'b011000;
         // sll/slli16
-        7'b01?1010: alu_controls = 6'b011010 | funct7[29];
+        7'b01?1010: alu_controls = 6'b011010;
         // sra/srai8
-        7'b01?1100: alu_controls = 6'b011100 | funct7[29];
+        7'b01?1100: alu_controls = 6'b011100;
         // srl/srli8
-        7'b01?1101: alu_controls = 6'b011110 | funct7[29];
+        7'b01?1101: alu_controls = 6'b011110;
         // sll/slli8
-        7'b01?1110: alu_controls = 6'b100000 | funct7[29];
+        7'b01?1110: alu_controls = 6'b100000;
 
         // smul/umul16
         7'b101?000: alu_controls = 6'b100010 | funct7[29];

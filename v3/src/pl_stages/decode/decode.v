@@ -55,6 +55,9 @@ module decode #(
 );
 
     wire [2:0] imm_src_d;
+    wire [DATA_WIDTH-1:0] imm_val_p;
+    wire [DATA_WIDTH-1:0] imm_val;
+    wire is8, is16;
 
     control_unit cu (
         .op(instr_f[6:0]),
@@ -86,8 +89,19 @@ module decode #(
     imm_ext imex (
         .instr(instr_f[31:7]),
         .imm_type(imm_src_d),
-        .imm_val(imm_val_d)
+        .imm_val(imm_val)
     );
+
+    mux2 im_mux(
+        .in1(imm_val),
+        .in2(imm_val_p),
+        .sel(is8 | is16),
+        .out(imm_val_d)
+    );
+
+    assign is8 = (instr_f[31:25] == 7'b1110111) ? (instr_f[14]) : (0);
+    assign is16 = (instr_f[31:25] == 7'b1110111) ? (~instr_f[14]) : (1);
+    assign imm_val_p = (is16) ? (instr_f[24:20]) : ((is8) ? (instr_f[23:20]) : (0));
 
     assign funct3_d = instr_f[14:12];
 
