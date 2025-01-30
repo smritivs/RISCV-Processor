@@ -6,7 +6,7 @@ module control_unit(
     output reg_write_d,
     output [1:0] res_src_d,
     output mem_write_d, jump_d, branch_d,
-    output [3:0] alu_control_d,
+    output [4:0] alu_control_d,
     output alu_src_b_d, alu_src_a_d, adder_src_d,
     output [2:0] imm_src_d
     );
