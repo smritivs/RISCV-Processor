@@ -20,7 +20,7 @@ module cpu #(
     wire [DATA_WIDTH-1:0] instr_d_i, rd1_d_i, rd2_d_i, imm_val_d_i;
     wire [ADDRESS_WIDTH-1:0] pc_d_i, pc_plus4_d_i;
     wire [4:0] rs1_d_i, rs2_d_i, rd_d_i;
-    wire [4:0] alu_control_d_i;
+    wire [5:0] alu_control_d_i;
     wire [1:0] res_src_d_i;
     wire mem_write_d_i, reg_write_d_i, jump_d_i, branch_d_i, alu_src_a_d_i, alu_src_b_d_i, adder_src_d_i;
     wire [2:0] funct3_d_i;
@@ -28,7 +28,7 @@ module cpu #(
     wire [DATA_WIDTH-1:0] instr_d_o, rd1_d_o, rd2_d_o, imm_val_d_o;
     wire [ADDRESS_WIDTH-1:0] pc_d_o, pc_plus4_d_o;
     wire [4:0] rs1_d_o, rs2_d_o, rd_d_o;
-    wire [4:0] alu_control_d_o;
+    wire [5:0] alu_control_d_o;
     wire [1:0] res_src_d_o;
     wire mem_write_d_o, reg_write_d_o, jump_d_o, branch_d_o, alu_src_a_d_o, alu_src_b_d_o, adder_src_d_o;
     wire [2:0] funct3_d_o;

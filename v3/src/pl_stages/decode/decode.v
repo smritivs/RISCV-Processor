@@ -38,7 +38,7 @@ module decode #(
     output mem_write_d,
     jump_d,
     branch_d,
-    output [4:0] alu_control_d,
+    output [5:0] alu_control_d,
     output [2:0] funct3_d,
     output alu_src_b_d,
     alu_src_a_d,
@@ -59,7 +59,7 @@ module decode #(
     control_unit cu (
         .op(instr_f[6:0]),
         .funct3(instr_f[14:12]),
-        .funct7b5(instr_f[30]),
+        .funct7(instr_f[31:25]),
         .reg_write_d(reg_write_d),
         .res_src_d(res_src_d),
         .mem_write_d(mem_write_d),
