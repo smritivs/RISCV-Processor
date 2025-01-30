@@ -33,7 +33,7 @@ always @(*) begin
     // register arithmetic instr
     7'b0110011: controls = 12'b1_00_0_0_0_0_0_0_xxx;
     // lui
-    7'b0110111: controls = 12'b1_00_0_0_0_0_0_0_100;
+    7'b0110111: controls = 12'b1_00_0_0_0_0_1_0_100;
     // branch
     7'b1100011: controls = 12'b0_00_0_0_1_0_0_0_010;
     // jalr

@@ -103,11 +103,13 @@ alu main_alu(
     .a(a_alu),
     .b(b_alu),
     .alu_controls(alu_control_d),
-    .funct3b0(funct3_d[0]),
+    .funct3b0(funct3_d[12]),
     .res(alu_result_e)
 );
 
 assign pc_src_e = jump_d | (branch_d & alu_result_e[0]);
+
+assign write_data_e = b_forward;
 
 assign reg_write_e = reg_write_d;
 

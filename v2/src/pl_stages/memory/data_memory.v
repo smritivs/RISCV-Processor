@@ -48,11 +48,11 @@ always @(*) begin
         end
         // lh
         3'b001: begin
-            read_data_m = (data_mem_addr[1]) ? ({16'd0,word[31:16]}) : ({{16{word[15]}},word[15:0]});
+            read_data_m = (data_mem_addr[1]) ? ({{16{word[31]}},word[31:16]}) : ({{16{word[15]}},word[15:0]});
         end
         // lhu
         3'b101: begin
-            read_data_m = (data_mem_addr[1]) ? ({16'd0,word[31:16]}) : ({{16{word[15]}},word[15:0]});
+            read_data_m = (data_mem_addr[1]) ? ({16'd0,word[31:16]}) : ({16'd0,word[15:0]});
         end
         3'b010: begin
             read_data_m = word;
@@ -76,8 +76,8 @@ always@(posedge clk) begin
 
             // sh
             3'b001: begin
-                if(data_mem_addr[1]) ram[word_addr][15:0] <= write_data_e[15:0];
-                else ram[word_addr][31:16] <= write_data_e[31:16];
+                if(data_mem_addr[1]) ram[word_addr][31:16] <= write_data_e[15:0];
+                else ram[word_addr][15:0] <= write_data_e[15:0];
             end
             // sw
             3'b010: begin

@@ -103,7 +103,7 @@ alu main_alu(
     .a(a_alu),
     .b(b_alu),
     .alu_controls(alu_control_d),
-    .funct3b0(funct3_d[0]),
+    .funct3b0(funct3_d[12]),
     .res(alu_result_e)
 );
 
