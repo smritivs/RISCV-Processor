@@ -12,7 +12,7 @@ LDFLAGS=" -march=$ARCH -mabi=ilp32 --specs=picolibc.specs -Os -g3 -flto -DPICOLI
 LDFLAGS+=" -Wl,--gc-sections,--defsym=__flash=0x00000000,--defsym=__flash_size=$ROM --crt0=minimal" #" -nostartfiles"
 LDFLAGS+=" -Wl,--defsym=__ram=0x02000000,--defsym=__ram_size=$RAM,--defsym=__stack_size=$STACK -Tpicolibc.ld"
 
-cd ../
+# cd ../
 
 riscv64-unknown-elf-gcc $CFLAGS -c "$infile" -o .temp.file.o && \
 riscv64-unknown-elf-gcc $LDFLAGS -o .temp.file.elf .temp.file.o && \

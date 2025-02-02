@@ -109,6 +109,8 @@ alu main_alu(
 
 assign pc_src_e = jump_d | (branch_d & alu_result_e[0]);
 
+assign write_data_e = b_forward;
+
 assign reg_write_e = reg_write_d;
 
 assign res_src_e = res_src_d;

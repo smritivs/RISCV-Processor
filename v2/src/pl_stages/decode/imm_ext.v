@@ -38,6 +38,7 @@ always @(*) begin
         3'b011: imm_val = {{12{instr[31]}}, instr[19:12], instr[20], instr[30:21], 1'b0};
         // U-type
         3'b100: imm_val = {instr[31:12],12'b0};
+        default: imm_val = 32'd0;
     endcase
 end
 endmodule

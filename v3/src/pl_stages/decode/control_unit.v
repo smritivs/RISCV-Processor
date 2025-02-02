@@ -45,7 +45,7 @@ always @(*) begin
     // p type, encode imm vals
     7'b1110111: controls = 12'b1_00_0_0_0_0_1_0_000;
     // default
-    default: controls = 12'bx_00_0_0_0_0_0_0_000;
+    default: controls = 12'b0_00_0_0_0_0_0_0_000;
     endcase
 end
 
@@ -90,6 +90,7 @@ always @(*) begin
             3'b10?: alu_controls = 6'b001011;
             // branch less than, greater than unsigned
             3'b11?: alu_controls = 6'b001100;
+            default: alu_controls = 6'd0;
         endcase
     end
     // jalr
@@ -122,10 +123,12 @@ always @(*) begin
         7'b101?000: alu_controls = 6'b100010 | funct7[29];
         // smul/umul8
         7'b101?100: alu_controls = 6'b100100 | funct7[29];
+
+        default: alu_controls = 6'd0;
         endcase
     end
     // default
-    default: alu_controls = 6'bxxxxxx;
+    default: alu_controls = 6'd0;
     endcase
 end
 

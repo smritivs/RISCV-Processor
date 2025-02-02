@@ -41,7 +41,7 @@ always @(*) begin
     // jal
     7'b1101111: controls = 12'b1_10_0_1_0_0_0_0_011;
     // default
-    default: controls = 12'bx_00_0_0_0_0_0_0_000;
+    default: controls = 12'b0_00_0_0_0_0_0_0_000;
     endcase
 end
 
@@ -86,14 +86,15 @@ always @(*) begin
             3'b10?: alu_controls = 4'b1011;
             // branch less than, greater than unsigned
             3'b11?: alu_controls = 4'b1100;
+            default: alu_controls = 4'd0;
         endcase
     end
     // jalr
-    7'b1100111: alu_controls = 4'bxxxx;
+    7'b1100111: alu_controls = 4'b0000;
     // jal
-    7'b1101111: alu_controls = 4'bxxxx;
+    7'b1101111: alu_controls = 4'b0000;
     // default
-    default: alu_controls = 4'bxxxx;
+    default: alu_controls = 4'b0000;
     endcase
 end
 
