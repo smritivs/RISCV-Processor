@@ -28,7 +28,7 @@ module cpu #(
     wire [DATA_WIDTH-1:0] instr_d_o, rd1_d_o, rd2_d_o, imm_val_d_o;
     wire [ADDRESS_WIDTH-1:0] pc_d_o, pc_plus4_d_o;
     wire [4:0] rs1_d_o, rs2_d_o, rd_d_o;
-    wire [5:0] alu_control_d_o;
+    wire [3:0] alu_control_d_o;
     wire [1:0] res_src_d_o;
     wire mem_write_d_o, reg_write_d_o, jump_d_o, branch_d_o, alu_src_a_d_o, alu_src_b_d_o, adder_src_d_o;
     wire [2:0] funct3_d_o;
@@ -76,28 +76,12 @@ module cpu #(
     wire reg_write_w_o;
 
     // hazards
-    wire stall_f, stall_d, flush_d, flush_e;
-    wire [1:0] forward_a_e, forward_b_e;
+    wire flush_d, flush_e;
 
     hazard hazard_unit(
-        .rs1_d(instr_f_o[19:15]),
-        .rs2_d(instr_f_o[24:20]),
-    	.rs1_e(rs1_d_o),
-    	.rs2_e(rs2_d_o),
-    	.rd_e(rd_d_o),
     	.pc_src_e(pc_src_e_i),
-    	.res_src_e_b0(res_src_d_o[0]),
-    	.rd_m(rd_e_o),
-    	.reg_write_m(reg_write_e_o),
-    	.rd_w(rd_m_o),
-    	.reg_write_w(reg_write_m_o),
-
-    	.stall_f(stall_f),
-    	.stall_d(stall_d),
     	.flush_d(flush_d),
-    	.flush_e(flush_e),
-    	.forward_a_e(forward_a_e),
-    	.forward_b_e(forward_b_e)
+    	.flush_e(flush_e)
     );
 
     // Fetch
@@ -224,8 +208,8 @@ module cpu #(
 
         .alu_result_m(alu_result_m_i),
         .alu_result_w(alu_result_w_i),
-        .forward_a_e(forward_a_e),
-        .forward_b_e(forward_b_e),
+        .forward_a_e(2'b00),
+        .forward_b_e(2'b00),
 
         .reg_write_e(reg_write_e_i),
         .res_src_e(res_src_e_i),
@@ -239,41 +223,18 @@ module cpu #(
         .rd_e(rd_e_i)
     );
 
-    // e to m pl_reg
-    pl_reg_em em (
-        .clk(clk),
-        .en (1'b0),
-        .clr(rst),
 
-        .reg_write_e_i(reg_write_e_i),
-        .mem_write_e_i(mem_write_e_i),
-        .result_src_e_i(res_src_e_i),
-        .funct3_e_i(funct3_e_i),
-        .alu_result_e_i(alu_result_e_i),
-        .write_data_e_i(write_data_e_i),
-        .rd_e_i(rd_e_i),
-        .pc_plus4_e_i(pc_plus4_e_i),
-
-        .reg_write_e_o(reg_write_e_o),
-        .mem_write_e_o(mem_write_e_o),
-        .result_src_e_o(res_src_e_o),
-        .funct3_e_o(funct3_e_o),
-        .alu_result_e_o(alu_result_e_o),
-        .write_data_e_o(write_data_e_o),
-        .rd_e_o(rd_e_o),
-        .pc_plus4_e_o(pc_plus4_e_o)
-    );
     // Memory
     memory memory_stage (
         .clk(clk),
-        .reg_write_e(reg_write_e_o),
-        .result_src_e(res_src_e_o),
-        .mem_write_e(mem_write_e_o),
-        .funct3_e(funct3_e_o),
-        .alu_result_e(alu_result_e_o),
-        .write_data_e(write_data_e_o),
-        .rd_e(rd_e_o),
-        .pc_plus4_e(pc_plus4_e_o),
+        .reg_write_e(reg_write_e_i),
+        .result_src_e(res_src_e_i),
+        .mem_write_e(mem_write_e_i),
+        .funct3_e(funct3_e_i),
+        .alu_result_e(alu_result_e_i),
+        .write_data_e(write_data_e_i),
+        .rd_e(rd_e_i),
+        .pc_plus4_e(pc_plus4_e_i),
 
         .reg_write_m(reg_write_m_i),
         .result_src_m(result_src_m_i),
@@ -283,35 +244,16 @@ module cpu #(
         .pc_plus4_m(pc_plus4_m_i)
     );
 
-    // m to w pl_reg
-    pl_reg_mw mw (
-        .clk(clk),
-        .en (1'b0),
-        .clr(rst),
 
-        .reg_write_m_i(reg_write_m_i),
-        .result_src_m_i(result_src_m_i),
-        .alu_result_m_i(alu_result_m_i),
-        .read_data_m_i(read_data_m_i),
-        .rd_m_i(rd_m_i),
-        .pc_plus4_m_i(pc_plus4_m_i),
-
-        .reg_write_m_o(reg_write_m_o),
-        .result_src_m_o(result_src_m_o),
-        .alu_result_m_o(alu_result_m_o),
-        .read_data_m_o(read_data_m_o),
-        .rd_m_o(rd_m_o),
-        .pc_plus4_m_o(pc_plus4_m_o)
-    );
 
     // Writeback
     writeback writeback_stage (
-        .reg_write_m(reg_write_m_o),
-        .result_src_m(result_src_m_o),
-        .alu_result_m(alu_result_m_o),
-        .read_data_m(read_data_m_o),
-        .rd_m(rd_m_o),
-        .pc_plus4_m(pc_plus4_m_o),
+        .reg_write_m(reg_write_m_i),
+        .result_src_m(result_src_m_i),
+        .alu_result_m(alu_result_m_i),
+        .read_data_m(read_data_m_i),
+        .rd_m(rd_m_i),
+        .pc_plus4_m(pc_plus4_m_i),
 
         .result_w(alu_result_w_i),
         .reg_write_w(reg_write_w_i),

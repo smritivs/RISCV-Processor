@@ -1,0 +1,38 @@
+add16
+sub16
+stas16, straight add/ sub
+stsa16, rev of above
+add8
+sub8
+sra16
+srai16
+srl16
+srli16
+sll16
+slli16
+sra8
+srai8
+srl8
+srli8
+sll8
+slli8
+
+smul16
+umul16
+smul8
+umul8
+
+swap16
+swap8
+
+cmpeq16
+scmplt16 signed compare less than
+scmple16 above less than equal to
+ucmplt16 signed compare less than
+ucmple16 above less than equal to
+
+cmpeq8
+scmplt8 signed compare less than
+scmple8 above less than equal to
+ucmplt8 signed compare less than
+ucmple8 above less than equal to
