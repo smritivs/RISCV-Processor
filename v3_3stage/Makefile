@@ -14,7 +14,7 @@ SRC_ALL=$(SRC_STG) $(SRC_REGS) $(SRC_UTILS) $(SRC_TOP)
 SRC_ALL_V=$(SRC_STG_V) $(SRC_REGS_V) $(SRC_UTILS_V) $(SRC_TOP_V)
 
 # Project specific variables
-STAGES=5
+STAGES=3
 TYPE=opt
 sim:
 ifeq ($(top),cpu)
