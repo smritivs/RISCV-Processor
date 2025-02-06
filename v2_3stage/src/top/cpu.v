@@ -87,7 +87,7 @@ module cpu #(
     // Fetch
     fetch fetch_stage (
         .clk(clk),
-        .en(stall_f),
+        .en(1'b0),
         .rst(rst),
         .pc_src_e(pc_src_e_i),
         .pc_target_e(pc_target_e_i),
@@ -100,7 +100,7 @@ module cpu #(
 
     pl_reg_fd fd (
         .clk(clk),
-        .en(stall_f),
+        .en(1'b0),
         .clr(rst),
         .pc_f_i(pc_f_i),
         .pc_plus4_f_i(pc_plus4_f_i),

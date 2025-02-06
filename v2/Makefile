@@ -12,6 +12,10 @@ SRC_TOP_V=-y ./src/top
 SRC_ALL=$(SRC_STG) $(SRC_REGS) $(SRC_UTILS) $(SRC_TOP)
 
 SRC_ALL_V=$(SRC_STG_V) $(SRC_REGS_V) $(SRC_UTILS_V) $(SRC_TOP_V)
+
+# Project specific variables
+STAGES=5
+TYPE=base
 sim:
 ifeq ($(top),cpu)
 	iverilog -Wall $(SRC_ALL) ./test/top/cpu_tb.v
@@ -37,6 +41,12 @@ gh:
 	git commit -m "$(msg)"
 	xclip -sel c < ~/git_stuff/key.txt
 	git push origin main
+
+svi:
+	cat ./src/pl_stages/fetch/code.hex > ~/git_stuff/RISCV-Vivado/$(TYPE)$(STAGES)stage/$(TYPE)$(STAGES)stage.srcs/sources_1/new/code.hex
+	cat ~/git_stuff/RISCV-Vivado/$(TYPE)$(STAGES)stage/$(TYPE)$(STAGES)stage.srcs/sources_1/new/code.hex
+	python3 ./scripts/setup_vivado.py "$(TYPE)" "$(STAGES)"
+
 
 clean:
 	rm -rf a.out dumpfile.vcd

@@ -19,7 +19,7 @@ module pl_reg_de #(
 	output reg reg_write_d_o,
     output reg [1:0] res_src_d_o,
     output reg mem_write_d_o, jump_d_o, branch_d_o,
-    output reg [5:0] alu_control_d_o,
+    output reg [4:0] alu_control_d_o,
     output reg [14:12] funct3_d_o,
     output reg alu_src_b_d_o, alu_src_a_d_o, adder_src_d_o,
     output reg [DATA_WIDTH-1:0] rd1_d_o, rd2_d_o,
