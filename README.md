@@ -1,4 +1,4 @@
-# RISCV-Processor
+# RISC-V Processor
 A repo for the 5th semester experiential learning project
 
 ## Organisation
